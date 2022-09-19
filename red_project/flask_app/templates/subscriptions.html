@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>subscriptions</title>
+</head>
+<body class="bg-dark text-info">
+    <div class="container w-50 m-auto">
+        <div class="row"></div>
+        <div class="float-end mt-3 mb-3">
+            <a href="/users/edit/{{session['user_id']}}">Account</a>
+            <a class="btn btn-danger" href="/logout">logout</a>
+            <a class="btn btn-secondary" href="/subscriptions">home</a>
+        </div>
+
+        <h1 class="text-start">Welcome <span class="text-warning">{{session['first_name']}}</span></h1>
+        <table class="table text-info w-75 mt-5">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Added by</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subscription in subscriptions %}
+                <tr>
+                    <td><a href="/subscription/show/{{subscription.id}}">{{subscription.title}}</a></td>
+                    <td>Added by {{subscription.user}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/subscription/new" class="btn btn-primary">Add a Magazine!</a>
+    </div>
+</body>
+</html>
